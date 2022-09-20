@@ -1,5 +1,4 @@
 import 'package:geolocator/geolocator.dart';
-import 'package:http/http.dart';
 
 class Location {
   Future determinePosition() async {
@@ -23,18 +22,7 @@ class Location {
       return Future.error(
           'Location permissions are permanently denied, we cannot request permissions.');
     }
-    var location = await Geolocator.getCurrentPosition();
-    var lat = location.latitude;
-    var lon = location.longitude;
-    var url =
-        'https://api.openweathermap.org/data/2.5/weather?lat=$lat&lon=$lon&appid=8f4ba99c571d41dc51523f9ca4b3a576';
-    Uri uri = Uri.parse(url);
-    Response responce = await get(uri);
-    // ignore: avoid_print
-    print(responce.body);
+    var position = await Geolocator.getCurrentPosition();
+    return [position.latitude, position.longitude];
   }
-}
-
-getLocation() {
-  return Location().determinePosition();
 }

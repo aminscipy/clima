@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:clima/services/location.dart';
 import 'location_screen.dart';
+import 'package:clima/services/networking.dart';
 
 class LoadingScreen extends StatefulWidget {
   const LoadingScreen({super.key});
@@ -18,7 +19,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
           style: TextButton.styleFrom(backgroundColor: Colors.blueGrey),
           onPressed: () {
             setState(() {
-              getLocation();
+              Networking().getResponce();
               Navigator.push(context, MaterialPageRoute(builder: (context) {
                 return const LocationScreen();
               }));
